@@ -1,21 +1,17 @@
-const express = require('express');
-const Post = require("../models/user");
+const express = require("express");
 const router = express.Router();
-
+const User=require('../models/user')
 /********************************ADD A NEW POST ******************************/
-
-router.post('/',async (req,res,next) => {
-
-    var newPost = new Post({
+router.post('/',(req,res)=>{
+    var newPost = new User({
         name: req.body.name,
         email: req.body.email,
         mobile_no: req.body.mobile_no
     })
-   await newPost.save()
+   newPost.save()
     .then(post => {
+        res.send(post);
         console.log(post);
-        res.json(post);
-        //res.send(post);
     })
     .catch(err => res.json(err))
     

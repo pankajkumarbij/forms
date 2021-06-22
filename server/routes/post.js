@@ -42,9 +42,11 @@ router.get('/deleteUser/:id',(req, res) =>{
     User.findOneAndRemove({'_id':req.params.id})
     .then((user) => {
         if(user){
-            res.send('user Deleted!!')
+            var message = { success: "sucessfully deleted" };
+            res.json(message);
         }else{
-            res.send('user Not Found!!')
+            var message = { success: "User not found" };
+            res.json(message);
         }
     }).catch(err => {
         console.log(err);
@@ -61,9 +63,11 @@ router.put('/updateUser/:id',(req, res) =>{
     User.findOneAndUpdate({'_id':req.params.id},newupdate)
     .then((user) => {
         if(user){
-            res.send('user Details updated')
+            var message = { success: "sucessfully updated" };
+            res.json(message);
         }else{
-            res.send('user Not Found!!')
+            var message = { success: "User not found" };
+            res.json(message);
         }
     }).catch(err => {
         console.log(err);

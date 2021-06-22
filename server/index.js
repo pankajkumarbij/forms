@@ -15,7 +15,6 @@ app.get('/',(req,res)=>{
     res.send("hello");
 })
 app.use('/api/post', post_details);
-
 app.listen(5000,()=>{
     console.log("backend run");
 })

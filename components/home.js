@@ -56,7 +56,7 @@ export default function Home() {
             setEmail(data[0].email);
             setMn(data[0].mobile_no);
         })
-        setIsupdate(data[0]._id);
+        setIsupdate(id);
     }
 
     function updateForm(){

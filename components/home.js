@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {Card, Button, TextInput, DataTable} from 'react-native-paper';
 
 export default function Home() {
-
+    
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [mn, setMn] = useState("");
@@ -11,7 +11,7 @@ export default function Home() {
     const [isupdate, setIsupdate] = useState("");
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/post/display/', {
+        fetch('http://localhost:5000/display/', {
             method: 'GET'
         })
         .then(res => res.json())
@@ -19,7 +19,7 @@ export default function Home() {
     }, [data]);
 
     function submitForm(){
-        fetch('http://localhost:5000/api/post/', {
+        fetch('http://localhost:5000/insert/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ export default function Home() {
     }
 
     function deleteData(id){
-        fetch(`http://localhost:5000/api/post/deleteUser/${id}/`, {
+        fetch(`http://localhost:5000/deleteUser/${id}/`, {
             method: 'GET'
         })
         .then(res => res.json())
@@ -47,7 +47,7 @@ export default function Home() {
     }
 
     function updateData(id){
-        fetch(`http://localhost:5000/api/post/display/${id}/`, {
+        fetch(`http://localhost:5000/display/${id}/`, {
             method: 'GET'
         })
         .then(res => res.json())
@@ -60,7 +60,7 @@ export default function Home() {
     }
 
     function updateForm(){
-        fetch(`http://localhost:5000/api/post/updateUser/${isupdate}`, {
+        fetch(`http://localhost:5000/updateUser/${isupdate}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -82,7 +82,11 @@ export default function Home() {
     return (
         <View style={styles.container}>
             <Card style={styles.cards}>
-                <Card.Title title="Insert Form Data"/>
+                {isupdate==="" ? 
+                    <Card.Title title="Insert Form Data"/>
+                    :
+                    <Card.Title title="Update Form Data"/>
+                }
                 <Card.Content>
                     <TextInput
                         label="Name"
@@ -157,5 +161,4 @@ const styles = StyleSheet.create({
     submitbutton: {
         marginTop: 7,
     }
-
 });
